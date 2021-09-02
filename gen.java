@@ -5,25 +5,28 @@ public class gen{
 
    static Set<String> hs;
   static  int wordsMade;
-
+  static int wordsTried;
     public static void main(String[] args) {
           wordsMade = 0;
+          wordsTried = 0;
           hs = new HashSet<>();
          readFromFile(hs);
          System.out.println(hs.size());
 
 
-        char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        // char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
+        String letters= "abcdefghijklmnopqrstuvwxyz";
+        char[] alphabet = letters.toCharArray();
        StringBuilder sb = new StringBuilder();
        int n = 0;
         try{
             n = Integer.parseInt(args[0]);
 
         }catch (Exception e){
-               n = 4;
+               n = 3;
         }
       generate(alphabet, 1, sb, n);
-           System.out.println(wordsMade + " words of length " + n); }
+           System.out.println(wordsMade + " actual words found of length " + n + " out of " + wordsTried +" attempted combos of the characters " + letters); }
 
 
      /**
@@ -35,14 +38,20 @@ public class gen{
       */
      public static void generate(char[] alphabet, int depth, StringBuilder sb, int n){
          //if the length of the word about to be made is larger than what we specified
+         wordsTried++;
          if(depth > n){
                 if(hs.contains(sb.toString())){
                     System.out.println(sb.toString());
                     wordsMade++;
                 }
+                if(sb.toString().equals("solo")){
+                    System.out.println("****************");
+                    wordsMade++;
+                }
                 return;
 
         }
+       
         for(int i = 0; i < alphabet.length; i++){
             sb.append(alphabet[i]);
             generate(alphabet, depth+1, sb, n);
