@@ -15,11 +15,17 @@ public class gen{
 
         char[] alphabet = "abcdefghijklmnopqrstuvwxyz".toCharArray();
        StringBuilder sb = new StringBuilder();
-        int n = 5;
-      generate(alphabet, 1, sb, n);
-           System.out.println(wordsMade + " words of length " + n);
+       int n = 0;
+        try{
+            n = Integer.parseInt(args[0]);
 
-    }
+        }catch (Exception e){
+               n = 4;
+        }
+      generate(alphabet, 1, sb, n);
+           System.out.println(wordsMade + " words of length " + n); }
+
+
      /**
       * runtime O(26^N) lol
       * @param alphabet 
@@ -28,9 +34,8 @@ public class gen{
       * @param n how long the word will be
       */
      public static void generate(char[] alphabet, int depth, StringBuilder sb, int n){
-        
-
-        if(depth == n+1){
+         //if the length of the word about to be made is larger than what we specified
+         if(depth > n){
                 if(hs.contains(sb.toString())){
                     System.out.println(sb.toString());
                     wordsMade++;
@@ -44,9 +49,6 @@ public class gen{
             sb.deleteCharAt(sb.length()-1);
 
         }
-
-
-
      }
 
      public static void readFromFile(Set<String> hs) {
