@@ -21,7 +21,7 @@ public class gen{
 
     }
      /**
-      * 
+      * runtime O(26^N) lol
       * @param alphabet 
       * @param depth how deep we are in the recursion / how long our word is
       * @param sb string builder
